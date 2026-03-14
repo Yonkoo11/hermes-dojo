@@ -44,9 +44,6 @@ def run_demo(reset: bool = False, telegram: bool = False):
         print("\n  [0/6] Resetting demo data...")
         from seed_demo_data import seed_data
         seed_data(days=7, clear=True)
-        # Save initial snapshot
-        data = analyze_sessions()
-        save_snapshot(data)
         time.sleep(0.5)
 
     # Step 1: Analyze
@@ -81,6 +78,21 @@ def run_demo(reset: bool = False, telegram: bool = False):
         target = imp["target"]
         desc = imp.get("description", "")
         print(f"        → [{action}] {target}: {desc}")
+
+    # Show a sample skill to prove quality
+    SKILLS_DIR = Path(os.getenv("HERMES_HOME", Path.home() / ".hermes")) / "skills"
+    sample_targets = ["terminal-run", "web-extract", "execute-code"]
+    for target in sample_targets:
+        sample_path = SKILLS_DIR / target / "SKILL.md"
+        if sample_path.exists():
+            print(f"\n  Sample created skill ({target}):")
+            print("  " + "-" * 56)
+            content = sample_path.read_text()
+            # Show first 20 lines
+            for line in content.split("\n")[:20]:
+                print(f"  {line}")
+            print(f"  ... ({len(content)} chars total)")
+            break
 
     # Step 4: Save snapshot
     print("\n  [4/6] Saving metrics snapshot...")

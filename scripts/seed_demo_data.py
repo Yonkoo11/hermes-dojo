@@ -158,8 +158,17 @@ SCENARIOS = [
 ]
 
 
-def seed_data(days: int = 5, clear: bool = False):
-    """Seed the database with realistic demo data."""
+def seed_data(days: int = 5, clear: bool = False, deterministic: bool = True):
+    """Seed the database with realistic demo data.
+
+    Args:
+        days: Number of days of data to seed
+        clear: Clear previously seeded data first
+        deterministic: Use fixed seed for reproducible demo output
+    """
+    if deterministic:
+        random.seed(42)
+
     if not DB_PATH.exists():
         # Initialize db via hermes_state
         import sys
@@ -249,6 +258,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Hermes Dojo Demo Data Seeder")
     parser.add_argument("--days", type=int, default=5, help="Days of data to seed")
     parser.add_argument("--clear", action="store_true", help="Clear previous seeds first")
+    parser.add_argument("--random", action="store_true", help="Use random seed (non-deterministic)")
     args = parser.parse_args()
 
-    seed_data(days=args.days, clear=args.clear)
+    seed_data(days=args.days, clear=args.clear, deterministic=not args.random)

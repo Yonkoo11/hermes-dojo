@@ -24,7 +24,7 @@ Built Hermes Dojo for the @NousResearch hackathon. It closes the feedback loop t
 4. Runs GEPA self-evolution on weak skills
 5. Delivers a morning report to Telegram
 
-55% → 85% success rate in one overnight cycle.
+From seeded demo data: 57% → 85% after one Dojo cycle (your mileage will vary with real sessions).
 
 GitHub: https://github.com/Yonkoo11/hermes-dojo
 

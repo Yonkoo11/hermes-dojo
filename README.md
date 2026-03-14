@@ -44,13 +44,16 @@ Stores daily metrics. Shows improvement over days/weeks. Proof that the agent is
 
 ```bash
 # Install as a Hermes skill
-cp -r . ~/.hermes/skills/hermes-dojo/
+git clone https://github.com/Yonkoo11/hermes-dojo.git
+cd hermes-dojo
+./install.sh
 
 # Seed demo data (optional, for testing)
-python3 scripts/seed_demo_data.py --days 7
+cd ~/.hermes/skills/hermes-dojo/scripts
+python3 seed_demo_data.py --days 7
 
 # Run the full pipeline
-python3 scripts/demo.py --reset
+python3 demo.py --reset
 ```
 
 ## Commands (via Hermes Agent)
