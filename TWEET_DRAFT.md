@@ -1,41 +1,35 @@
 # Tweet Draft for Submission
 
-## Option A (concise)
+## Option A (the honest one)
 
-Built Hermes Dojo for the @NousResearch hackathon — a self-improvement system for Hermes Agent.
+I kept correcting my Hermes Agent on the same stuff. Wrong branch before commit. Timeouts with no retry. File paths it should've checked first.
 
-It reads your past sessions, finds where the agent fails, creates skills to fix those failures, and runs self-evolution (GEPA) on the weakest ones.
+So I built Hermes Dojo for the @NousResearch hackathon. It reads your session logs, finds the patterns you keep correcting, and writes skills to stop them from happening again. It also hooks into GEPA self-evolution for the stubborn ones.
 
-Your agent gets better while you sleep.
+Not magic. Just a feedback loop that was missing.
 
 [video]
 
-GitHub: https://github.com/Yonkoo11/hermes-dojo
+https://github.com/Yonkoo11/hermes-dojo
 
-## Option B (more technical)
+## Option B (shorter, punchier)
+
+Built a thing for the @NousResearch hackathon: Hermes Dojo.
+
+My agent kept failing the same way. Wrong git branch, timeout loops, missing file checks. Every session I'd correct it, next session it forgot.
+
+Dojo reads your session logs, finds the repeat failures, and creates skills to fix them. Hooks into GEPA self-evolution for deeper fixes. Tracks improvement day over day so you can see if it's actually working.
+
+[video] https://github.com/Yonkoo11/hermes-dojo
+
+## Option C (thread starter)
 
 "Why does my agent keep making the same mistakes?"
 
-Built Hermes Dojo for the @NousResearch hackathon. It closes the feedback loop that makes self-evolution actually useful:
+I asked myself this enough times that I built a fix.
 
-1. Reads session logs from state.db
-2. Finds tool failures, retry loops, user corrections
-3. Creates targeted skills with real bash commands and error handling
-4. Runs GEPA self-evolution on weak skills
-5. Delivers a morning report to Telegram
+Hermes Dojo for the @NousResearch hackathon. It mines your session history for the stuff you keep correcting, then writes targeted skills and runs self-evolution to stop it.
 
-From seeded demo data: 57% → 85% after one Dojo cycle (your mileage will vary with real sessions).
-
-GitHub: https://github.com/Yonkoo11/hermes-dojo
-
-[video]
-
-## Option C (shortest)
-
-Hermes Dojo: your agent's overnight training gym.
-
-Reads sessions → finds failures → creates skills → runs self-evolution → reports results.
-
-Built for the @NousResearch hackathon.
+The demo shows a 34% to 57% improvement arc over 5 simulated days. Real usage would vary, but the pipeline works end to end.
 
 [video] https://github.com/Yonkoo11/hermes-dojo

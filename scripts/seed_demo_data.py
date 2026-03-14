@@ -169,16 +169,34 @@ def seed_data(days: int = 5, clear: bool = False, deterministic: bool = True):
     if deterministic:
         random.seed(42)
 
-    if not DB_PATH.exists():
-        # Initialize db via hermes_state
-        import sys
-        sys.path.insert(0, str(HERMES_HOME / "hermes-agent"))
-        from hermes_state import SessionDB
-        db = SessionDB(DB_PATH)
-        db.close()
-
     conn = sqlite3.connect(str(DB_PATH))
     conn.row_factory = sqlite3.Row
+
+    # Ensure required tables exist
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS sessions (
+            id TEXT PRIMARY KEY,
+            source TEXT,
+            model TEXT,
+            started_at REAL,
+            ended_at REAL,
+            end_reason TEXT,
+            message_count INTEGER DEFAULT 0,
+            tool_call_count INTEGER DEFAULT 0
+        )
+    """)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS messages (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            session_id TEXT,
+            role TEXT,
+            content TEXT,
+            tool_calls TEXT,
+            tool_name TEXT,
+            timestamp REAL
+        )
+    """)
+    conn.commit()
 
     if clear:
         # Only clear seeded sessions (they have 'dojo-seed' in their source)

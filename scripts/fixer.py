@@ -233,7 +233,7 @@ metadata:
 ### For file operations
 ```bash
 # Always verify path exists before cat/head/tail/rm
-test -e "$PATH" && echo "exists" || echo "not found"
+test -e "$TARGET" && echo "exists" || echo "not found"
 
 # For directories
 test -d "$DIR" && echo "is directory" || echo "not a directory"
@@ -586,20 +586,20 @@ def apply_fixes(plan: dict) -> list[dict]:
     """Apply fixes from the plan. Returns list of applied improvements."""
     improvements = []
 
-    for patch in plan["patches"]:
-        skill_path = patch.get("skill_path")
+    for p in plan["patches"]:
+        skill_path = p.get("skill_path")
         if skill_path and Path(skill_path).exists():
             skill_md = Path(skill_path) / "SKILL.md"
             if skill_md.exists():
                 # Append the fix addition to the skill file
                 with open(skill_md, "a") as f:
-                    f.write("\n\n" + patch["skill_addition"])
+                    f.write("\n\n" + p["skill_addition"])
 
                 improvements.append({
                     "action": "patch",
-                    "target": patch["target"],
-                    "description": patch["patch_description"],
-                    "error_type": patch["error_type"],
+                    "target": p["target"],
+                    "description": p["patch_description"],
+                    "error_type": p["error_type"],
                 })
 
     for creation in plan["creations"]:

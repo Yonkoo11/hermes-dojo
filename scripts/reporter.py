@@ -25,7 +25,7 @@ def generate_report(
     monitor_data: dict,
     improvements: list[dict] = None,
     previous_data: dict = None,
-    format: str = "cli",
+    fmt: str = "cli",
 ) -> str:
     """Generate a formatted improvement report."""
 
@@ -37,10 +37,10 @@ def generate_report(
     gaps = monitor_data.get("skill_gaps", [])
 
     # Calculate delta if we have previous data
-    prev_rate = previous_data.get("overall_success_rate", 0) if previous_data else None
+    prev_rate = previous_data.get("overall_success_rate") if previous_data else None
     delta = success_rate - prev_rate if prev_rate is not None else None
 
-    if format == "telegram":
+    if fmt == "telegram":
         return _telegram_report(
             sessions, tool_calls, success_rate, delta,
             corrections, weakest, gaps, improvements,
@@ -109,17 +109,19 @@ def _telegram_report(
 
     # Load history for sparkline
     try:
-        sys.path.insert(0, str(Path(__file__).parent))
         from tracker import load_metrics
         history = load_metrics()
         if len(history) >= 3:
             rates = [h.get("overall_success_rate", 0) for h in history[-7:]]
             blocks = " ▁▂▃▄▅▆▇█"
             min_r, max_r = min(rates), max(rates)
-            span = max_r - min_r if max_r > min_r else 1
-            sparkline = "".join(
-                blocks[min(8, int((r - min_r) / span * 8))] for r in rates
-            )
+            span = max_r - min_r
+            if span == 0:
+                sparkline = "█" * len(rates)
+            else:
+                sparkline = "".join(
+                    blocks[min(8, int((r - min_r) / span * 8))] for r in rates
+                )
             trend_emoji = "📈" if rates[-1] >= rates[0] else "📉"
             lines.append(f"\n{trend_emoji} Trend: [{sparkline}]")
     except Exception:
@@ -192,7 +194,6 @@ if __name__ == "__main__":
 
     # Try to load previous snapshot for comparison
     try:
-        sys.path.insert(0, str(Path(__file__).parent))
         from tracker import load_metrics
         history = load_metrics()
         prev = history[-1] if history else None
@@ -200,6 +201,6 @@ if __name__ == "__main__":
         prev = None
 
     if args.json:
-        print(json.dumps({"report": generate_report(data, format=args.format, previous_data=prev)}, indent=2))
+        print(json.dumps({"report": generate_report(data, fmt=args.format, previous_data=prev)}, indent=2))
     else:
-        print(generate_report(data, format=args.format, previous_data=prev))
+        print(generate_report(data, fmt=args.format, previous_data=prev))

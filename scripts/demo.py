@@ -130,7 +130,7 @@ def run_demo(reset: bool = False, telegram: bool = False):
 
     # Step 0: Optionally reset
     if reset:
-        print("\n  [0/6] Resetting demo data...")
+        print("\n  Resetting demo data...")
         from seed_demo_data import seed_data
         seed_data(days=7, clear=True)
         time.sleep(0.5)
@@ -196,7 +196,7 @@ def run_demo(reset: bool = False, telegram: bool = False):
     # Load previous snapshot for delta comparison
     prev_history = load_metrics()
     prev = prev_history[-2] if len(prev_history) >= 2 else None
-    report = generate_report(data, improvements=improvements, previous_data=prev, format=fmt)
+    report = generate_report(data, improvements=improvements, previous_data=prev, fmt=fmt)
     print()
     print(report)
 
@@ -219,7 +219,7 @@ if __name__ == "__main__":
     parser.add_argument("--multi-day", action="store_true", help="Simulate multi-day learning curve")
     args = parser.parse_args()
 
-    if args.multi_day:
+    if args.multi_day or args.reset:
         seed_learning_curve()
 
     run_demo(reset=args.reset, telegram=args.telegram)

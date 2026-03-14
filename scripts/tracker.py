@@ -26,8 +26,11 @@ METRICS_FILE = DATA_DIR / "metrics.json"
 def load_metrics() -> list[dict]:
     """Load historical metrics."""
     if METRICS_FILE.exists():
-        with open(METRICS_FILE) as f:
-            return json.load(f)
+        try:
+            with open(METRICS_FILE) as f:
+                return json.load(f)
+        except (json.JSONDecodeError, ValueError):
+            return []
     return []
 
 
@@ -105,10 +108,13 @@ def print_history():
         rates = [h.get("overall_success_rate", 0) for h in history[-10:]]
         blocks = " ▁▂▃▄▅▆▇█"
         min_r, max_r = min(rates), max(rates)
-        span = max_r - min_r if max_r > min_r else 1
-        sparkline = "".join(
-            blocks[min(8, int((r - min_r) / span * 8))] for r in rates
-        )
+        span = max_r - min_r
+        if span == 0:
+            sparkline = "█" * len(rates)
+        else:
+            sparkline = "".join(
+                blocks[min(8, int((r - min_r) / span * 8))] for r in rates
+            )
         print(f"  Sparkline: [{sparkline}]")
 
     print()

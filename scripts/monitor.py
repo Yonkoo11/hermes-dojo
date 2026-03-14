@@ -109,6 +109,7 @@ def detect_retry_patterns(messages: list[dict]) -> list[dict]:
     retries = []
     prev_tool = None
     prev_time = 0
+    prev_session = None
     consecutive_count = 0
 
     for msg in messages:
@@ -125,16 +126,17 @@ def detect_retry_patterns(messages: list[dict]) -> list[dict]:
                             retries.append({
                                 "tool": prev_tool,
                                 "count": consecutive_count + 1,
-                                "session_id": msg["session_id"],
+                                "session_id": prev_session,
                             })
                         consecutive_count = 0
                     prev_tool = tool_name
                     prev_time = ts
+                    prev_session = msg["session_id"]
             except (json.JSONDecodeError, TypeError, AttributeError):
                 continue
 
     if consecutive_count >= 2:
-        retries.append({"tool": prev_tool, "count": consecutive_count + 1})
+        retries.append({"tool": prev_tool, "count": consecutive_count + 1, "session_id": prev_session})
 
     return retries
 
