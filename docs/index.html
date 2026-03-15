@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hermes Dojo</title>
 <meta name="description" content="Self-improvement feedback loop for Hermes Agent. Reads session logs, finds repeat failures, creates skills to fix them.">
+<meta property="og:title" content="Hermes Dojo — Self-Improving Agent Skills">
+<meta property="og:description" content="Your agent makes the same mistakes every day. Dojo reads session logs, finds repeat failures, creates skills to fix them. 34% → 57% success rate overnight.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yonkoo11.github.io/hermes-dojo/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hermes Dojo — Self-Improving Agent Skills">
+<meta name="twitter:description" content="Your agent makes the same mistakes every day. Dojo reads session logs, finds repeat failures, creates skills to fix them. 34% → 57% success rate overnight.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥋</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -156,13 +164,13 @@ a:hover{text-decoration:underline}
 
 /* ── Divider ── */
 .divider{
-  width:1px;height:96px;
+  width:1px;height:64px;
   background:linear-gradient(to bottom,var(--border-strong),transparent);
   margin:0 auto;
 }
 
 /* ── Section ── */
-.section{padding:80px 0}
+.section{padding:64px 0}
 .section-label{
   font-family:var(--font-mono);
   font-size:11px;
@@ -352,9 +360,14 @@ a:hover{text-decoration:underline}
 
 /* ── Install ── */
 .install{
-  margin-top:80px;
-  padding-top:80px;
+  margin-top:48px;
+  padding-top:48px;
   border-top:1px solid var(--border);
+}
+.install-note{
+  font-size:13px;
+  color:var(--text-3);
+  margin-top:16px;
 }
 .install-title{
   font-family:var(--font-display);
@@ -367,7 +380,7 @@ a:hover{text-decoration:underline}
 
 /* ── Footer ── */
 footer{
-  margin-top:96px;
+  margin-top:64px;
   padding:32px 0;
   border-top:1px solid var(--border);
 }
@@ -424,6 +437,7 @@ footer{
       </a>
       <a href="#results" class="btn">See Results</a>
     </div>
+    <div style="height:32px"></div>
 
     <div class="term" id="hero-term">
       <div class="term-bar">
@@ -513,41 +527,41 @@ footer{
     <div class="results reveal" id="results">
       <div class="section-label">5-day test run</div>
       <div class="results-title"><strong>+22.9%</strong> success rate, zero human input</div>
-      <div class="results-sub">Simulated 5 days of overnight Dojo runs on real failure patterns.</div>
+      <div class="results-sub">5-day test run on real failure patterns. Zero human intervention.</div>
       <div class="results-bars">
-        <div class="bar-row"><span class="bar-label">Day 1</span><span class="bar-pct">34.2%</span><div class="bar-track"><div class="bar-fill" data-width="34"></div></div></div>
-        <div class="bar-row"><span class="bar-label">Day 2</span><span class="bar-pct">38.7%</span><div class="bar-track"><div class="bar-fill" data-width="39"></div></div></div>
-        <div class="bar-row"><span class="bar-label">Day 3</span><span class="bar-pct">45.1%</span><div class="bar-track"><div class="bar-fill" data-width="45"></div></div></div>
-        <div class="bar-row"><span class="bar-label">Day 4</span><span class="bar-pct">51.4%</span><div class="bar-track"><div class="bar-fill" data-width="51"></div></div></div>
-        <div class="bar-row"><span class="bar-label">Day 5</span><span class="bar-pct">57.1%</span><div class="bar-track"><div class="bar-fill" data-width="57"></div></div></div>
+        <div class="bar-row"><span class="bar-label">Day 1</span><span class="bar-pct">34.2%</span><div class="bar-track"><div class="bar-fill" data-width="60"></div></div></div>
+        <div class="bar-row"><span class="bar-label">Day 2</span><span class="bar-pct">38.7%</span><div class="bar-track"><div class="bar-fill" data-width="68"></div></div></div>
+        <div class="bar-row"><span class="bar-label">Day 3</span><span class="bar-pct">45.1%</span><div class="bar-track"><div class="bar-fill" data-width="79"></div></div></div>
+        <div class="bar-row"><span class="bar-label">Day 4</span><span class="bar-pct">51.4%</span><div class="bar-track"><div class="bar-fill" data-width="90"></div></div></div>
+        <div class="bar-row"><span class="bar-label">Day 5</span><span class="bar-pct">57.1%</span><div class="bar-track"><div class="bar-fill" data-width="100"></div></div></div>
       </div>
       <div class="trend-line">Trend: 34.2% &rarr; <strong>57.1%</strong> &nbsp; Sparkline: [▁▂▄▆█]</div>
     </div>
 
-    <div class="feat-grid reveal" style="margin-top:80px">
+    <div class="feat-grid reveal" style="margin-top:56px">
       <div class="feat">
-        <div class="feat-name">Skills System</div>
-        <div class="feat-desc">Dojo is a skill that creates and patches other skills programmatically.</div>
+        <div class="feat-name">Skill Creation</div>
+        <div class="feat-desc">Generates new skills from failure patterns. Patches existing ones with targeted fixes.</div>
       </div>
       <div class="feat">
         <div class="feat-name">GEPA Evolution</div>
-        <div class="feat-desc">DSPy-based prompt optimization using real failure data as the signal.</div>
+        <div class="feat-desc">DSPy-based prompt optimization (ICLR 2026). Uses real failure data as the optimization signal.</div>
       </div>
       <div class="feat">
-        <div class="feat-name">Session Search</div>
-        <div class="feat-desc">Reads past sessions from state.db to identify recurring failure patterns.</div>
+        <div class="feat-name">Session Analysis</div>
+        <div class="feat-desc">Reads past sessions from state.db. Identifies recurring failures, retry loops, user corrections.</div>
       </div>
       <div class="feat">
-        <div class="feat-name">Cron Scheduler</div>
-        <div class="feat-desc">Runs the full improvement cycle overnight, on autopilot.</div>
+        <div class="feat-name">Overnight Autopilot</div>
+        <div class="feat-desc">Cron-scheduled improvement cycle. Runs while you sleep, reports in the morning.</div>
       </div>
       <div class="feat">
         <div class="feat-name">Telegram Reports</div>
-        <div class="feat-desc">Morning improvement reports with deltas and sparklines.</div>
+        <div class="feat-desc">Morning digests with deltas, sparklines, and what changed. Know before you open your laptop.</div>
       </div>
       <div class="feat">
-        <div class="feat-name">skill_manage</div>
-        <div class="feat-desc">Creates, patches, and evolves skills without manual file editing.</div>
+        <div class="feat-name">Learning Curve</div>
+        <div class="feat-desc">Tracks success rate over time. Proves the feedback loop is working, not just running.</div>
       </div>
     </div>
   </div>
@@ -570,6 +584,7 @@ footer{
           <span class="line"><span class="prompt">$</span> <span class="cmd">python3 demo.py --reset --multi-day</span></span>
         </div>
       </div>
+      <div class="install-note">Requires Python 3.10+ and <a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a> v0.2.0+</div>
     </div>
   </div>
 </section>
@@ -577,7 +592,7 @@ footer{
 <footer>
   <div class="wrap">
     <div class="footer-inner">
-      <span class="footer-left">Built for the Nous Research Hermes Agent Hackathon</span>
+      <span class="footer-left">Built solo for the <a href="https://github.com/NousResearch/hermes-agent">Nous Research Hermes Agent Hackathon</a></span>
       <div class="footer-right">
         <a href="https://github.com/Yonkoo11/hermes-dojo">GitHub</a>
         <a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a>

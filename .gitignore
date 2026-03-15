@@ -1,3 +1,4 @@
 data/metrics.json
 __pycache__/
 *.pyc
+ai/
