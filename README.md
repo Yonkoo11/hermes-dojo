@@ -106,6 +106,22 @@ hermes-dojo/
 
 Nous Research Hermes Agent Hackathon (March 2026)
 
+## Contributing
+
+Issues and pull requests welcome. The analyzer in particular benefits from
+real-world failure patterns — if you see a false-positive recommendation or a
+weak-skill misclassification, please open an issue with the offending tool
+name and top error string.
+
+Thanks to external contributors:
+
+- [@eggressive](https://github.com/eggressive) — root-cause classification and
+  description-based gap detection in the weakness analyzer (#3)
+
+## License
+
+MIT — see [LICENSE](LICENSE).
+
 ---
 
 Built on [Hermes Agent](https://github.com/NousResearch/hermes-agent) by [Nous Research](https://nousresearch.com)
